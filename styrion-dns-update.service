@@ -1,0 +1,9 @@
+[Unit]
+Description=Styrion dns update serivce
+
+[Service]
+ExecStart=/usr/local/bin/dns-update --config /etc/ddns-styrion/config.ini
+User=ddns-updater
+
+[Install]
+WantedBy=multi-user.target

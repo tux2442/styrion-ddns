@@ -1,0 +1,11 @@
+:global currentIP;
+
+:local newIP [/ip address get [find interface="vl_lte_passthrough"] address];
+:log info "New IP is $newIP"
+:set $newIP [:pick $newIP 0 [:find $newIP "/"]];
+
+:if ($newIP != $currentIP) do={
+    :put "ip address $currentIP changed to $newIP";
+    :set currentIP $newIP;
+     tool fetch url="http://SERVER-IP:8000/\?ip=$currentIP" http-method=get mode=http
+}
