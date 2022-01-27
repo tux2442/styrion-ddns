@@ -47,7 +47,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         s.end_headers()
         login_cookie = get_login(config["Styrion"]["user"], config["Styrion"]["password"])
         for key in config["Domains"].keys():
-            jsonlist = json.loads(config["Styrion"][key])
+            jsonlist = json.loads(config["Domains"][key])
             update_ip(login_cookie, jsonlist[1], jsonlist[0], params['ip'][0])
         return
 
